@@ -1,6 +1,7 @@
 <resources>
     <!-- APP  -->
     <string name="app_name">GitHub Search</string>
+    <string name="search_results_activity_label">Search Results</string>
 
     <!-- SEARCH -->
     <string name="search_label">Search for a user by entering a search term below:</string>

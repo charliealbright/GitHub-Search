@@ -23,6 +23,7 @@ public class SearchPresenter implements SearchContract.Presenter {
     public void searchClicked(String query) {
         if (validateQuery(query)) {
             Timber.tag("[searchClicked]").d("query = %s", query);
+            mSearchView.navigateToNextScreen(query);
         } else {
             mSearchView.showSearchValidationError();
         }

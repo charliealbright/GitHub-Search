@@ -1,5 +1,6 @@
 package io.charliealbright.githubsearch.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -54,6 +55,8 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     @Override
     public void navigateToNextScreen(String query) {
         // Navigate to SearchResultsActivity
+        Intent intent = new Intent(this, SearchResultsActivity.class);
+        startActivity(intent);
     }
 
     private View.OnClickListener mOnSearchButtonClickListener = new View.OnClickListener() {
