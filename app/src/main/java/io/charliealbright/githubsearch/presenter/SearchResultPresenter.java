@@ -42,6 +42,8 @@ public class SearchResultPresenter implements SearchResultContract.Presenter {
             public void onResponse(Call<GithubSearchResult> call, Response<GithubSearchResult> response) {
                 GithubSearchResult result = response.body();
                 Timber.tag("[Retrofit][onResponse]").d("resultCount = %d", result.getResultCount());
+                mSearchResultView.hideLoadingOverlay();
+                mSearchResultView.addItems(result.getUserList());
             }
 
             @Override

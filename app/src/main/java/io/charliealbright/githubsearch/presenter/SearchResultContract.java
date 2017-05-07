@@ -1,5 +1,9 @@
 package io.charliealbright.githubsearch.presenter;
 
+import java.util.List;
+
+import io.charliealbright.githubsearch.model.GithubUser;
+
 /**
  * Created by Charlie on 5/6/17.
  */
@@ -12,7 +16,7 @@ public interface SearchResultContract {
 
         void hideLoadingOverlay();
 
-
+        void addItems(List<GithubUser> userList);
     }
 
     interface Presenter extends BasePresenter {

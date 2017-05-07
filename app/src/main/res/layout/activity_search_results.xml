@@ -8,6 +8,7 @@
     tools:context="io.charliealbright.githubsearch.view.SearchResultsActivity">
 
     <RelativeLayout
+        android:id="@+id/activity_search_result_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#88000000"
@@ -21,6 +22,7 @@
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/activity_search_result_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

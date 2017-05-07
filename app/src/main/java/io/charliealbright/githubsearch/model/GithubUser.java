@@ -46,4 +46,53 @@ public class GithubUser {
 
     @SerializedName("followers")
     private int mFollowerCount;
+
+    public String getUsername() {
+        return mUsername;
+    }
+
+    public String getId() {
+        return mId;
+    }
+
+    public String getAvatarUrl() {
+        return mAvatarUrl;
+    }
+
+    public String getProfileUrl() {
+        return mProfileUrl;
+    }
+
+    public String getType() {
+        return mType;
+    }
+
+    public boolean isAdmin() {
+        return mIsAdmin;
+    }
+
+    public String getFullName() {
+        return mFullName;
+    }
+
+    @Nullable
+    public String getCompany() {
+        return mCompany;
+    }
+
+    public String getLocation() {
+        return mLocation;
+    }
+
+    public String getBio() {
+        return mBio;
+    }
+
+    public int getRepoCount() {
+        return mRepoCount;
+    }
+
+    public int getFollowerCount() {
+        return mFollowerCount;
+    }
 }
