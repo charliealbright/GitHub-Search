@@ -2,7 +2,6 @@ package io.charliealbright.githubsearch.application;
 
 import android.app.Application;
 
-import timber.log.BuildConfig;
 import timber.log.Timber;
 
 /**
@@ -11,11 +10,12 @@ import timber.log.Timber;
 
 public class GithubSearchApplication extends Application {
 
+    private static boolean DEBUG = true;
     @Override
     public void onCreate() {
         super.onCreate();
 
-        if (BuildConfig.DEBUG) {
+        if (DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }
     }

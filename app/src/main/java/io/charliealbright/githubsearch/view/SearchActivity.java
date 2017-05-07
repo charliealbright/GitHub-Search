@@ -51,6 +51,11 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
                 .setAction("Action", null).show();
     }
 
+    @Override
+    public void navigateToNextScreen(String query) {
+        // Navigate to SearchResultsActivity
+    }
+
     private View.OnClickListener mOnSearchButtonClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {

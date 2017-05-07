@@ -14,6 +14,8 @@ public interface SearchContract {
 
         void showSearchValidationError();
 
+        void navigateToNextScreen(String query);
+
     }
 
     interface Presenter extends BasePresenter {
