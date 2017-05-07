@@ -37,13 +37,20 @@ public class SearchResultPresenter implements SearchResultContract.Presenter {
 
     @Override
     public void performSearch(String query) {
+        mSearchResultView.showLoadingOverlay();
         mGithubApiService.search(query).enqueue(new Callback<GithubSearchResult>() {
             @Override
             public void onResponse(Call<GithubSearchResult> call, Response<GithubSearchResult> response) {
                 GithubSearchResult result = response.body();
-                Timber.tag("[Retrofit][onResponse]").d("resultCount = %d", result.getResultCount());
-                mSearchResultView.hideLoadingOverlay();
-                mSearchResultView.addItems(result.getUserList());
+                if (result != null) {
+                    Timber.tag("[Retrofit][onResponse]").d("resultCount = %d", result.getResultCount());
+                    mSearchResultView.hideLoadingOverlay();
+                    mSearchResultView.addItems(result.getUserList());
+                } else {
+                    Timber.tag("[Retrofit][onResponse]").w("response is empty - most likely the rate limit was exceeded.");
+                    mSearchResultView.showRateLimitExceededError();
+                    mSearchResultView.hideLoadingOverlay();
+                }
             }
 
             @Override

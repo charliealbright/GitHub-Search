@@ -1,5 +1,7 @@
 package io.charliealbright.githubsearch.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
@@ -8,13 +10,13 @@ import com.google.gson.annotations.SerializedName;
  * Created by Charlie on 5/5/2017.
  */
 
-public class GithubUser {
+public class GithubUser implements Parcelable {
 
     @SerializedName("login")
     private String mUsername;
 
     @SerializedName("id")
-    private String mId;
+    private int mId;
 
     @SerializedName("avatar_url")
     private String mAvatarUrl;
@@ -31,10 +33,6 @@ public class GithubUser {
     @SerializedName("name")
     private String mFullName;
 
-    @Nullable
-    @SerializedName("company")
-    private String mCompany;
-
     @SerializedName("location")
     private String mLocation;
 
@@ -47,11 +45,25 @@ public class GithubUser {
     @SerializedName("followers")
     private int mFollowerCount;
 
+    public GithubUser(Parcel parcel) {
+        mUsername = parcel.readString();
+        mId = parcel.readInt();
+        mAvatarUrl = parcel.readString();
+        mProfileUrl = parcel.readString();
+        mType = parcel.readString();
+        mIsAdmin = parcel.readByte() != 0;
+        mFullName = parcel.readString();
+        mLocation = parcel.readString();
+        mBio = parcel.readString();
+        mRepoCount = parcel.readInt();
+        mFollowerCount = parcel.readInt();
+    }
+
     public String getUsername() {
         return mUsername;
     }
 
-    public String getId() {
+    public int getId() {
         return mId;
     }
 
@@ -75,11 +87,6 @@ public class GithubUser {
         return mFullName;
     }
 
-    @Nullable
-    public String getCompany() {
-        return mCompany;
-    }
-
     public String getLocation() {
         return mLocation;
     }
@@ -95,4 +102,36 @@ public class GithubUser {
     public int getFollowerCount() {
         return mFollowerCount;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(mUsername);
+        parcel.writeInt(mId);
+        parcel.writeString(mAvatarUrl);
+        parcel.writeString(mProfileUrl);
+        parcel.writeString(mType);
+        parcel.writeByte((byte) (mIsAdmin ? 1 : 0));
+        parcel.writeString(mFullName);
+        parcel.writeString(mLocation);
+        parcel.writeString(mBio);
+        parcel.writeInt(mRepoCount);
+        parcel.writeInt(mFollowerCount);
+    }
+
+    public static final Parcelable.Creator<GithubUser> CREATOR = new Parcelable.Creator<GithubUser>() {
+
+        public GithubUser createFromParcel(Parcel in) {
+            return new GithubUser(in);
+        }
+
+        @Override
+        public GithubUser[] newArray(int i) {
+            return new GithubUser[i];
+        }
+    };
 }
