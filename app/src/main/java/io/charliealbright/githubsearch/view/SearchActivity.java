@@ -56,6 +56,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     public void navigateToNextScreen(String query) {
         // Navigate to SearchResultsActivity
         Intent intent = new Intent(this, SearchResultsActivity.class);
+        intent.putExtra("query", query);
         startActivity(intent);
     }
 

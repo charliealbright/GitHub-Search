@@ -13,6 +13,8 @@ import retrofit2.http.Query;
 
 public interface GithubApiService {
 
+    String BASE_URL = "https://api.github.com";
+
     @Headers("Accept: application/vnd.github.v3+json")
     @GET("/search/users")
     Call<GithubSearchResult> search(@Query("q") String query);

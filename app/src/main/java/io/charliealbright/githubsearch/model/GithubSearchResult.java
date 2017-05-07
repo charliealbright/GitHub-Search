@@ -18,4 +18,16 @@ public class GithubSearchResult {
 
     @SerializedName("items")
     private List<GithubUser> mUserList;
+
+    public int getResultCount() {
+        return mResultCount;
+    }
+
+    public boolean isResultIncomplete() {
+        return mResultIncomplete;
+    }
+
+    public List<GithubUser> getUserList() {
+        return mUserList;
+    }
 }
