@@ -3,4 +3,7 @@
     <dimen name="horiz_margin">16dp</dimen>
     <dimen name="vert_margin">16dp</dimen>
     <dimen name="vert_margin_small">8dp</dimen>
+
+    <dimen name="cardview_margin">8dp</dimen>
+    <dimen name="search_result_item_font_size">24sp</dimen>
 </resources>
