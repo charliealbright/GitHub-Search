@@ -59,4 +59,9 @@ public class SearchResultPresenter implements SearchResultContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void searchResultItemClicked(String username) {
+        mSearchResultView.navigateToUserDetailView(username);
+    }
 }

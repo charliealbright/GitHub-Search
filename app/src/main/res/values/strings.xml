@@ -8,7 +8,11 @@
     <string name="search_hint">Search Term</string>
     <string name="search_error_message">Your query was either invalid or empty. Please try again.</string>
 
+    <!-- SEARCH RESULT -->
     <string name="search_result_rate_limit_error">Github API rate limit exceeded, please try again later.</string>
     <string name="title_activity_user_detail">UserDetailActivity</string>
 
+    <!-- USER DETAIL -->
+    <string name="empty_bio_message">This user does not have a bio.</string>
+    <string name="empty_location_message">Unknown</string>
 </resources>

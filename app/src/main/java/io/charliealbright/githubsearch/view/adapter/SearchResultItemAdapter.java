@@ -15,6 +15,8 @@ import java.util.List;
 
 import io.charliealbright.githubsearch.R;
 import io.charliealbright.githubsearch.model.GithubUser;
+import io.charliealbright.githubsearch.presenter.SearchResultPresenter;
+import timber.log.Timber;
 
 /**
  * Created by Charlie on 5/7/2017.
@@ -23,10 +25,12 @@ import io.charliealbright.githubsearch.model.GithubUser;
 public class SearchResultItemAdapter extends RecyclerView.Adapter<SearchResultItemAdapter.ViewHolder> {
 
     private Context mContext;
+    private SearchResultPresenter mPresenter;
     private List<GithubUser> mUserList;
 
-    public SearchResultItemAdapter(Context context, List<GithubUser> userList) {
+    public SearchResultItemAdapter(Context context, SearchResultPresenter presenter, List<GithubUser> userList) {
         mContext = context;
+        mPresenter = presenter;
         mUserList = userList;
     }
 
@@ -37,7 +41,7 @@ public class SearchResultItemAdapter extends RecyclerView.Adapter<SearchResultIt
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         GithubUser user = mUserList.get(position);
 
         holder.mUsernameTextView.setText(user.getUsername());
@@ -46,6 +50,15 @@ public class SearchResultItemAdapter extends RecyclerView.Adapter<SearchResultIt
                 .fitCenter()
                 .crossFade()
                 .into(holder.mAvatarImageView);
+
+        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GithubUser user = mUserList.get(holder.getAdapterPosition());
+                Timber.tag("[onClick]").d("username = %s", user.getUsername());
+                mPresenter.searchResultItemClicked(user.getUsername());
+            }
+        });
     }
 
     @Override

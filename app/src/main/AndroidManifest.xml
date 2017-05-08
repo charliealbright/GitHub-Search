@@ -27,11 +27,16 @@
         <activity
             android:name=".view.SearchResultsActivity"
             android:label="@string/search_results_activity_label"
-            android:parentActivityName=".view.SearchActivity"></activity>
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.charliealbright.githubsearch.view.SearchActivity" />
+        </activity>
         <activity
             android:name=".view.UserDetailActivity"
             android:label="@string/title_activity_user_detail"
             android:parentActivityName=".view.SearchResultsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

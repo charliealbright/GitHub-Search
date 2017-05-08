@@ -19,10 +19,14 @@ public interface SearchResultContract {
         void showRateLimitExceededError();
 
         void addItems(List<GithubUser> userList);
+
+        void navigateToUserDetailView(String username);
     }
 
     interface Presenter extends BasePresenter {
 
         void performSearch(String query);
+
+        void searchResultItemClicked(String username);
     }
 }

@@ -49,7 +49,7 @@ public class SearchResultsActivity extends AppCompatActivity implements SearchRe
             mPresenter.performSearch(mQuery);
         }
 
-        mAdapter = new SearchResultItemAdapter(getApplicationContext(), userList);
+        mAdapter = new SearchResultItemAdapter(getApplicationContext(), mPresenter, userList);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -81,5 +81,13 @@ public class SearchResultsActivity extends AppCompatActivity implements SearchRe
         if (!userList.isEmpty()) {
             mAdapter.addItemsAndNotify(userList);
         }
+    }
+
+    @Override
+    public void navigateToUserDetailView(String username) {
+        Timber.tag("[navigateToUserDetailView]").d("username: %s", username);
+        Intent intent = new Intent(this, UserDetailActivity.class);
+        intent.putExtra("username", username);
+        startActivity(intent);
     }
 }
