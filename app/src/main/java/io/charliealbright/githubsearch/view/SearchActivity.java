@@ -34,6 +34,18 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         mPresenter = new SearchPresenter(this);
 
         mSearchButton.setOnClickListener(mOnSearchButtonClickListener);
+
+        if (savedInstanceState != null) {
+            String query = savedInstanceState.getString("query");
+            mSearchField.getEditText().setText(query);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        String query = mSearchField.getEditText().getText().toString();
+        outState.putString("query", query);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
