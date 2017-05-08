@@ -1,5 +1,7 @@
 package io.charliealbright.githubsearch.presenter;
 
+import android.content.Intent;
+
 /**
  * Created by Charlie on 5/7/2017.
  */
@@ -33,10 +35,14 @@ public interface UserDetailContract {
         void showLoadingOverlay();
 
         void hideLoadingOverlay();
+
+        void startIntent(Intent intent);
     }
 
     interface Presenter extends BasePresenter {
 
         void loadUserDetails(String username);
+
+        void profileButtonClicked();
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class UserDetailActivity extends AppCompatActivity implements UserDetailC
     private ImageView mAdminIcon;
 
     private View mLoadingOverlay;
+    private Button mProfileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class UserDetailActivity extends AppCompatActivity implements UserDetailC
         mAdminIcon = (ImageView)findViewById(R.id.activity_user_detail_admin_icon);
 
         mLoadingOverlay = findViewById(R.id.activity_user_detail_loading_overlay);
+        mProfileButton = (Button)findViewById(R.id.activity_user_detail_profile_button);
+        mProfileButton.setOnClickListener(mProfileButtonClickListener);
 
         mPresenter = new UserDetailPresenter(this);
 
@@ -134,4 +138,16 @@ public class UserDetailActivity extends AppCompatActivity implements UserDetailC
     public void hideLoadingOverlay() {
         mLoadingOverlay.setVisibility(View.GONE);
     }
+
+    @Override
+    public void startIntent(Intent intent) {
+        startActivity(intent);
+    }
+
+    View.OnClickListener mProfileButtonClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            mPresenter.profileButtonClicked();
+        }
+    };
 }

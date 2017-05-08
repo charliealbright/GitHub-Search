@@ -1,5 +1,8 @@
 package io.charliealbright.githubsearch.presenter;
 
+import android.content.Intent;
+import android.net.Uri;
+
 import io.charliealbright.githubsearch.model.GithubUser;
 import io.charliealbright.githubsearch.network.GithubApiService;
 import retrofit2.Call;
@@ -19,6 +22,8 @@ public class UserDetailPresenter implements UserDetailContract.Presenter {
     private Retrofit mRetrofit;
     private GithubApiService mGithubApiService;
 
+    private String mUserProfileUrl = "";
+
     public UserDetailPresenter(UserDetailContract.View view) {
         mUserDetailView = view;
 
@@ -36,7 +41,7 @@ public class UserDetailPresenter implements UserDetailContract.Presenter {
     }
 
     @Override
-    public void loadUserDetails(String username) {
+    public void loadUserDetails(final String username) {
         mUserDetailView.showLoadingOverlay();
         mGithubApiService.getUser(username).enqueue(new Callback<GithubUser>() {
             @Override
@@ -67,6 +72,7 @@ public class UserDetailPresenter implements UserDetailContract.Presenter {
                     mUserDetailView.showAdminIcon();
                 }
 
+                mUserProfileUrl = user.getProfileUrl();
                 mUserDetailView.hideLoadingOverlay();
             }
 
@@ -75,5 +81,12 @@ public class UserDetailPresenter implements UserDetailContract.Presenter {
                 Timber.tag("[onFailure]").wtf(t);
             }
         });
+    }
+
+    @Override
+    public void profileButtonClicked() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(mUserProfileUrl));
+        mUserDetailView.startIntent(intent);
     }
 }

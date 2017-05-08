@@ -166,6 +166,7 @@
 
     <Button
         style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:id="@+id/activity_user_detail_profile_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/horiz_margin"
