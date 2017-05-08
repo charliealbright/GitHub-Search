@@ -12,6 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <TextView
+        android:id="@+id/activity_search_result_no_results"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/no_results_found_message"/>
+
     <RelativeLayout
         android:id="@+id/activity_search_result_overlay"
         android:layout_width="match_parent"

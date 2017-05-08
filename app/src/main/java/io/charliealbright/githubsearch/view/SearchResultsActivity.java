@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class SearchResultsActivity extends AppCompatActivity implements SearchRe
     private View mOverlay;
     private RecyclerView mRecyclerView;
     private SearchResultItemAdapter mAdapter;
+    private TextView mNoResultsLabel;
 
     private String mQuery;
 
@@ -37,12 +39,16 @@ public class SearchResultsActivity extends AppCompatActivity implements SearchRe
         mRecyclerView = (RecyclerView)findViewById(R.id.activity_search_result_recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        mNoResultsLabel = (TextView)findViewById(R.id.activity_search_result_no_results);
         mPresenter = new SearchResultPresenter(this);
 
         List<GithubUser> userList = new ArrayList<>();
         if (savedInstanceState != null) {
             userList = savedInstanceState.getParcelableArrayList("userList");
             mQuery = savedInstanceState.getString("query");
+            if (savedInstanceState.getBoolean("empty_message_visible")) {
+                mNoResultsLabel.setVisibility(View.VISIBLE);
+            }
         } else {
             Intent intent = getIntent();
             mQuery = intent.getStringExtra("query");
@@ -58,6 +64,7 @@ public class SearchResultsActivity extends AppCompatActivity implements SearchRe
         ArrayList<GithubUser> userList = new ArrayList<>(mAdapter.getUserList());
         outState.putParcelableArrayList("userList", userList);
         outState.putString("query", mQuery);
+        outState.putBoolean("empty_message_visible", mNoResultsLabel.getVisibility() == View.VISIBLE);
         super.onSaveInstanceState(outState);
     }
 
@@ -69,6 +76,11 @@ public class SearchResultsActivity extends AppCompatActivity implements SearchRe
     @Override
     public void hideLoadingOverlay() {
         mOverlay.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showNoResultsMessage() {
+        mNoResultsLabel.setVisibility(View.VISIBLE);
     }
 
     @Override

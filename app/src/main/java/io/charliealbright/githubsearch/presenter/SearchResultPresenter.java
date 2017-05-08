@@ -43,9 +43,14 @@ public class SearchResultPresenter implements SearchResultContract.Presenter {
             public void onResponse(Call<GithubSearchResult> call, Response<GithubSearchResult> response) {
                 GithubSearchResult result = response.body();
                 if (result != null) {
-                    Timber.tag("[Retrofit][onResponse]").d("resultCount = %d", result.getResultCount());
                     mSearchResultView.hideLoadingOverlay();
-                    mSearchResultView.addItems(result.getUserList());
+                    Timber.tag("[Retrofit][onResponse]").d("resultCount = %d", result.getResultCount());
+                    if (result.getResultCount() > 0) {
+                        mSearchResultView.addItems(result.getUserList());
+                    } else {
+                        Timber.tag("[Retrofit][onResponse]").d("showing empty result message...");
+                        mSearchResultView.showNoResultsMessage();
+                    }
                 } else {
                     Timber.tag("[Retrofit][onResponse]").w("response is empty - most likely the rate limit was exceeded.");
                     mSearchResultView.showRateLimitExceededError();

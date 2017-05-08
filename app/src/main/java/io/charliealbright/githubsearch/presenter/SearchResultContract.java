@@ -16,6 +16,8 @@ public interface SearchResultContract {
 
         void hideLoadingOverlay();
 
+        void showNoResultsMessage();
+
         void showRateLimitExceededError();
 
         void addItems(List<GithubUser> userList);

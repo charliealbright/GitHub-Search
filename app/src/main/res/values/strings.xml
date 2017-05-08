@@ -9,6 +9,7 @@
     <string name="search_error_message">Your query was either invalid or empty. Please try again.</string>
 
     <!-- SEARCH RESULT -->
+    <string name="no_results_found_message">No results found. Try broadening your search!</string>
     <string name="search_result_rate_limit_error">Github API rate limit exceeded, please try again later.</string>
     <string name="title_activity_user_detail">UserDetailActivity</string>
 
